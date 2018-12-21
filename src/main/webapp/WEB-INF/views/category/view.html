@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View category</title>
+</head>
+<body>
+<h1>View province: <span th:text="${category.name}"></span></h1>
+<a href="/category">Province list</a>
+<table border="1">
+    <tr>
+        <th>Title</th>
+        <th>Email</th>
+    </tr>
+    <th:block th:each="user : ${user}">
+        <tr>
+            <td th:text="${user.title}"></td>
+            <td th:text="${user.email}"></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

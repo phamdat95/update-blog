@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .form{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<h1>Blog List</h1>
+<a class="form" th:href="@{/blog/create}">Create blog</a>
+<p>
+    <a th:href="@{/blog/list}">Sort ascending</a>
+</p>
+<p>
+    <a th:href="@{/category}">Menu category</a>
+</p>
+<form th:action="@{/blog/list-title}" method="get">
+    Search by first name:
+    <input name="s" type="text"/>
+    <input type="submit" value="Search"/>
+</form><br/>
+<table border="1">
+    <tr>
+        <th>Title</th>
+        <th>Email</th>
+        <th>Category</th>
+        <th>View Content</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="user : ${list}">
+        <tr>
+            <td th:text="${user.title}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.category.name}"></td>
+            <td><a th:href="@{/blog/view/__${user.id}__}">View</a></td>
+            <td><a th:href="@{/blog/edit/__${user.id}__}">Edit</a></td>
+            <td><a th:href="@{/blog/delete/__${user.id}__}">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+<div>
+    <a th:href="@{/blog/list-sort(page=${list.number - 1})}" th:if="${list.hasPrevious()}">Previous</a>
+    <span th:text="${list.number + 1}"></span>/<span th:text="${list.totalPages}"></span>
+    <a th:href="@{/blog/list-sort(page=${list.number + 1})}" th:if="${list.hasNext()}">Next</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .size{
+            width: 300px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+<h1>Create user</h1>
+<p>
+    <a th:href="@{/blog/list}">Back to list</a>
+</p>
+<p th:if="${message != null}">
+    <span th:text="${message}"></span>
+</p>
+<fieldset>
+    <legend>Edit Content</legend>
+    <form action="#" th:action="@{/blog/edit}" method="post" novalidate="novalidate" th:object="${user}">
+        <input type="hidden" th:field="*{id}">
+        <input type="hidden" th:field="*{title}">
+        <input type="hidden" th:field="*{email}">
+        <div><textarea class="size" th:field="*{type}"></textarea></div>
+        <div><select th:field="*{category}">
+            <option th:each="p : ${category}" th:value="${p.id}" th:text="${p.name}"></option>
+        </select></div>
+        <div>
+            <input type="submit" value="Update">
+        </div>
+    </form>
+</fieldset>
+</body>
+</html>

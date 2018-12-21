@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .size{
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>View <a th:text="${user.title}"></a>'blog</h1>
+<fieldset>
+    <legend>Information user</legend>
+    <p>Name</p>
+    <p><a th:text="${user.title}"></a></p>
+    <p>Email: </p>
+    <p><a th:text="${user.email}"></a></p>
+    <p>Category: </p>
+    <p><a th:text="${user.category.name}"></a></p>
+    <p>Content blog: </p>
+    <p><a th:text="${user.type}"></a></p>
+    <p class="size"><a th:href="@{/blog/list}">Back to list</a></p>
+</fieldset>
+</body>
+</html>
